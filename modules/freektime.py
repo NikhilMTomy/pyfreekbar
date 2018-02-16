@@ -3,12 +3,14 @@ import arrow
 from modules import freekcolors
 
 timezone = 'Asia/Kolkata'
+icon = '' #Clock from siji
 
 def formatter(string):
   return_string = (
       '%{+u}'
       '%{+o}'
       '%{B' + freekcolors.text_background + '}'
+      '%{T2} ' + icon + '%{T1}'
       ' ' + string + ' '
       '%{B' + freekcolors.background + '}'
       '%{-u}'
