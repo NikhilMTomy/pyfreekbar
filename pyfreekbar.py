@@ -5,12 +5,15 @@ import sys
 from modules import freektime
 from modules import freekcolors
 from modules import freekbat
+from modules import freeknetwork
 
 while True:
   left='%{l} '
   center='%{c}'
   right = (
       '%{r}' 
+      ' '
+      '' + freeknetwork.getnetwork() + ''
       ' '
       '' + freekbat.getbat() + ''
       ' '

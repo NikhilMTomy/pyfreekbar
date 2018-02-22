@@ -2,6 +2,8 @@
 
 ## Dependencies
 **arrow** : `pip install arrow`
+**python-wifi**
+**iwconfig**
 ## Customizing
 The base script is `bar.sh`. It contains all the command line arguments given to lemonbar.
 
