@@ -6,9 +6,14 @@ from modules import freektime
 from modules import freekcolors
 from modules import freekbat
 from modules import freeknetwork
+from modules import freekdesktops
 
 while True:
-  left='%{l} '
+  left = (
+      '%{l}'
+      '' + freekdesktops.getdesktops() + ''
+      ' '
+      )
   center='%{c}'
   right = (
       '%{r}' 
@@ -23,7 +28,9 @@ while True:
 
   left = ' ' + left
 
-  sys.stdout.write("{0}{1}{2}\n".format(left, center, right))
+  final_string = "{0}{1}{2}".format(left, center, right)
+
+  sys.stdout.write(final_string + "\n")
   sys.stdout.flush()
 
   time.sleep(1)

@@ -3,7 +3,7 @@ import arrow
 from modules import freekcolors
 
 timezone = 'Asia/Kolkata'
-icon = '' #Clock from siji
+icon = '' #Clock from siji
 
 def formatter(string):
   return_string = (

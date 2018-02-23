@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import socket
+import NetworkManager
 from modules import freekcolors
 
 def has_internet():
@@ -14,19 +15,26 @@ def has_internet():
 
 def getnetwork():
   background = freekcolors.text_background
-  foreground = freekcolors.foreground
-  wifis = [
+  foreground = freekcolors.red
+  icons = [
       '',
       '',
       '',
-      ''
+      '',
+      '',
       ]
-  icon = wifis[3]
+  icon = icons[3]
+  status = ''
 
   if has_internet():
     background = freekcolors.green
     foreground = freekcolors.background
-    icon = wifis[0]
+    icon = icons[0]
+    status = ' ' + NetworkManager.const('device_type', 2)
+    #if status=='ethernet':
+    # icon = icons[4]
+    #else:
+    # icon = icons[0]
 
 
   return_string = (
@@ -35,8 +43,9 @@ def getnetwork():
       '%{F' + foreground + '}'
       '%{B' + background + '}'
       '%{T2}'
-      ' ' + icon + '%{T1} wifi '
-      '%{B' + freekcolors.background + '}'
+      ' ' + icon + '%{T1}'
+      '' + status + ''
+      ' %{B' + freekcolors.background + '}'
       '%{F' + freekcolors.foreground + '}'
       '%{-o}'
       '%{-u}'
