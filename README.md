@@ -1,6 +1,7 @@
 # PyFreekBar - Python "Freek" wrapper for lightweight lemon-scented bar
 
 ## Dependencies
+**lemonbar-xft**
 **arrow** : `pip install arrow`
 **iwconfig**
 **wmctrl**
