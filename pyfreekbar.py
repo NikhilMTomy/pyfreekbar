@@ -9,6 +9,8 @@ from modules import freeknetwork
 from modules import freekdesktops
 from modules import freekwindow
 
+INTERVAL = 0.5 # time in seconds
+
 while True:
   left = (
       '%{l}'
@@ -37,4 +39,4 @@ while True:
   sys.stdout.write(final_string + "\n")
   sys.stdout.flush()
 
-  time.sleep(1)
+  time.sleep(INTERVAL)
