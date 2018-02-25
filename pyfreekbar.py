@@ -9,7 +9,7 @@ from modules import freeknetwork
 from modules import freekdesktops
 from modules import freekwindow
 
-INTERVAL = 0.5 # time in seconds
+INTERVAL = 1 # time in seconds
 
 while True:
   left = (

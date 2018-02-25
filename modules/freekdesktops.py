@@ -2,7 +2,6 @@
 
 import subprocess
 from modules import freekcolors
-#import freekcolors
 
 def getdesktoplist():
   desktops = subprocess.run(['wmctrl', '-d'], stdout=subprocess.PIPE)
@@ -24,14 +23,9 @@ def getdesktops():
   current_foreground = freekcolors.background
   background = freekcolors.text_background
   current_background = freekcolors.green
-  icon = '' # Desktop siji icon
   return_string = (
       '%{+u}'
       '%{+o}'
-      '%{F' + foreground + '}'
-      '%{B' + background + '}'
-      '%{T2}'
-      ' ' + icon + '%{T1} '
       '%{B' + freekcolors.background + '} '
       )
 

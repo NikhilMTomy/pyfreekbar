@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from modules import freekcolors
-#import freekcolors
 
 def getbat():
   INTERFACE = 'BAT1'
