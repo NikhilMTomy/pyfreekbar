@@ -2,7 +2,6 @@
 
 import socket
 import subprocess
-import NetworkManager
 from modules import freekcolors
 
 def has_internet():
@@ -16,19 +15,23 @@ def has_internet():
 
 def is_connected():
   nmcli = subprocess.run(['nmcli', 'device', 'show'], stdout=subprocess.PIPE)
-  nmcli = [y.split() for z in nmcli.stdout.decode('utf-8').split('\n\n') for y in z.split('\n')]
+  nmcli = [[y.split() for y in z.split('\n')] for z in nmcli.stdout.decode('utf-8').split('\n\n')]
   found = False
   connected = False
   ssid = ''
+  device = ''
   for x in nmcli:
     for y in x:
-      if y == 'GENRAL.DEVICE:':
-        connected = x[1]
-      if y == '(connected)':
-        connected = True
-        break
-    if found == True:
-      break
+      if len(y) > 1:
+        if y[0].strip() == 'GENERAL.TYPE:':
+          device = y[1]
+        if len(y) == 3 and y[2].strip() == '(connected)':
+          connected = True
+        if connected and y[0].strip() == 'GENERAL.CONNECTION:':
+          ssid = y[1]
+          found = True
+          return ssid, device, True
+  return False
 
 def getnetwork():
   background = freekcolors.text_background
@@ -38,21 +41,23 @@ def getnetwork():
       '',
       '',
       '',
-      '',
+      '',
       ]
   icon = icons[3]
   status = ''
 
-  if has_internet():
-    background = freekcolors.green
+  ssid, device, connected = is_connected()
+  if connected:
+    if has_internet():
+      background = freekcolors.green
+    else:
+      background = freekcolors.text_background
     foreground = freekcolors.background
-    icon = icons[0]
-    status = ' ' + NetworkManager.const('device_type', 2)
-    #if status=='ethernet':
-    # icon = icons[4]
-    #else:
-    # icon = icons[0]
-
+    if device == 'wifi':
+      icon = icons[0]
+    else:
+      icon = icons[4]
+    status = ' ' + device
 
   return_string = (
       '%{+u}'
@@ -71,4 +76,4 @@ def getnetwork():
 
 
 if __name__ == '__main__':
-  print('Connection : ' + str(has_internet()))
+  print('Connection : ' + str(is_connected()))

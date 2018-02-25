@@ -2,7 +2,6 @@
 
 ## Dependencies
 **arrow** : `pip install arrow`
-**python-networkmanager**
 **iwconfig**
 **wmctrl**
 **xdotool**
