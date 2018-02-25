@@ -18,10 +18,10 @@ Modules are kept under `modules` directory.
 _Contains function regarding time display_  
 _Requires the dependency arrow_  
 #### Methods and variables  
-`**formatter()**` : returns the given string with proper lemonbar formatting  
-`**getdatetime()**` : returns date and time in specified format (default YYYY-MM-DD HH:mm:ss)  
-`**getime()**` : returns only time in specified format(default HH:mm:ss)  
-`**getdate()**` : returns only date in specified format(default YYYY-MM-DD)  
+`formatter()` : returns the given string with proper lemonbar formatting  
+`getdatetime()` : returns date and time in specified format (default YYYY-MM-DD HH:mm:ss)  
+`getime()` : returns only time in specified format(default HH:mm:ss)  
+`getdate()` : returns only date in specified format(default YYYY-MM-DD)  
 
 ### freekcolors  
 _Contains color constants_  
@@ -30,6 +30,6 @@ _Edit this if you want to change the color scheme_
 ### freekbat  
 _Contains functions regarding battery display_  
 #### Methods and variables  
-`**getbat()**` : returns the formatted battery output (icons by FontAwesome)  
+`getbat()` : returns the formatted battery output (icons by FontAwesome)  
 `INTERFACE` : It is the battery interface **Must configure this before running**  
 `BAT_DIR` : It is the directory where battery details are stored  
