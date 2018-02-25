@@ -25,7 +25,7 @@ _Requires the dependency arrow_
 
 ### freekcolors  
 _Contains color constants_  
-`Edit this if you want to change the color scheme`  
+_Edit this if you want to change the color scheme_  
 
 ### freekbat  
 _Contains functions regarding battery display_  
