@@ -41,7 +41,7 @@ def getnetwork():
       '',
       '',
       '',
-      '',
+      '',
       ]
   icon = icons[3]
   status = ''
