@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import socket
+import subprocess
 import NetworkManager
 from modules import freekcolors
 
@@ -12,6 +13,22 @@ def has_internet():
   except:
     pass
   return False
+
+def is_connected():
+  nmcli = subprocess.run(['nmcli', 'device', 'show'], stdout=subprocess.PIPE)
+  nmcli = [y.split() for z in nmcli.stdout.decode('utf-8').split('\n\n') for y in z.split('\n')]
+  found = False
+  connected = False
+  ssid = ''
+  for x in nmcli:
+    for y in x:
+      if y == 'GENRAL.DEVICE:':
+        connected = x[1]
+      if y == '(connected)':
+        connected = True
+        break
+    if found == True:
+      break
 
 def getnetwork():
   background = freekcolors.text_background

@@ -5,6 +5,7 @@
 **python-networkmanager**
 **iwconfig**
 **wmctrl**
+**xdotool**
 ## Customizing
 The base script is `bar.sh`. It contains all the command line arguments given to lemonbar.
 

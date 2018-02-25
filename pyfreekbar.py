@@ -7,6 +7,7 @@ from modules import freekcolors
 from modules import freekbat
 from modules import freeknetwork
 from modules import freekdesktops
+from modules import freekwindow
 
 while True:
   left = (
@@ -14,7 +15,10 @@ while True:
       '' + freekdesktops.getdesktops() + ''
       ' '
       )
-  center='%{c}'
+  center=(
+      '%{c}'
+      '' + freekwindow.getwindow() + ''
+      )
   right = (
       '%{r}' 
       ' '
