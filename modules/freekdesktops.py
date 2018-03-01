@@ -10,6 +10,13 @@ def getdesktoplist():
   desktops = [x for x in [list(y) for y in desktops]]
   return desktops
 
+def getuseddesktoplist():
+  used = subprocess.run(['wmctrl', '-l'], stdout=subprocess.PIPE)
+  used = subprocess.run(['awk', '{print $2}'], input=used.stdout, stdout=subprocess.PIPE)
+  used = used.stdout.decode('utf-8').strip().split('\n')
+  used = [x for x in used if int(x) >= 0]
+  return used
+
 def getdesktopname(desktop):
   if desktop[2] == '':
     return desktop[0]
@@ -19,16 +26,23 @@ def getdesktopname(desktop):
 def getdesktops():
   desktoplist = getdesktoplist()
   current_desktop = desktoplist[0]
+
   foreground = freekcolors.foreground
   current_foreground = freekcolors.background
-  background = freekcolors.text_background
+  used_foreground = freekcolors.foreground
+  unused_foreground = freekcolors.foreground
+
+  background = freekcolors.background
   current_background = freekcolors.green
+  used_background = freekcolors.text_background
+  unused_background = freekcolors.background
+
   return_string = (
       '%{+u}'
       '%{+o}'
       '%{B' + freekcolors.background + '} '
       )
-
+  used = getuseddesktoplist()
   for desktop in desktoplist:
     if desktop[1] == '*':
       return_string += (
@@ -39,14 +53,22 @@ def getdesktops():
           '%{B' + freekcolors.background + '} '
           )
     else:
-      return_string += (
-
-          '%{F' + foreground + '}'
-          '%{B' + background + '}'
-          '%{A:wmctrl -s ' + desktop[0] + ':}' 
-          ' ' + getdesktopname(desktop) + ' %{A}'
-          '%{B' + freekcolors.background + '} '
-          )
+      if desktop[0] in getuseddesktoplist():
+        return_string += (
+            '%{F' + used_foreground + '}'
+            '%{B' + used_background + '}'
+            '%{A:wmctrl -s ' + desktop[0] + ':}' 
+            ' ' + getdesktopname(desktop) + ' %{A}'
+            '%{B' + freekcolors.background + '} '
+            )
+      else:
+        return_string += (
+            '%{F' + unused_foreground + '}'
+            '%{B' + unused_background + '}'
+            '%{A:wmctrl -s ' + desktop[0] + ':}' 
+            ' ' + getdesktopname(desktop) + ' %{A}'
+            '%{B' + freekcolors.background + '} '
+            )
   return_string += (
       '%{B' + freekcolors.background + '}'
       '%{F' + freekcolors.foreground + '}'
