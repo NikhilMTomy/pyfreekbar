@@ -14,7 +14,7 @@ def getuseddesktoplist():
   used = subprocess.run(['wmctrl', '-l'], stdout=subprocess.PIPE)
   used = subprocess.run(['awk', '{print $2}'], input=used.stdout, stdout=subprocess.PIPE)
   used = used.stdout.decode('utf-8').strip().split('\n')
-  used = [x for x in used if int(x) >= 0]
+  used = [x for x in used]
   return used
 
 def getdesktopname(desktop):

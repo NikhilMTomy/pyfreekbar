@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-killall lemonbar 2>&1
+#killall lemonbar 2>&1
+for pid in $(ps -ef | awk '/pyfreek/ {print $2}'); do kill -9 $pid; done 2>&1
+for pid in $(ps -ef | awk '/lemonbar/ {print $2}'); do kill -9 $pid; done 2>&1
 
 background="#1E2127"
 foreground="#ABB2BF"
